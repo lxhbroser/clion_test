@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/e/clion_test/main.cpp
+iostream
+-
+sstream
+-
+variant
+-
+vector
+-
+map
+-
+algorithm
+/mnt/e/clion_test/algorithm
+unistd.h
+/mnt/e/clion_test/unistd.h
+
