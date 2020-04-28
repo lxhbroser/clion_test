@@ -106,6 +106,51 @@ static std::string int2bin(T iNumber)
 
 int main()
 {
+    std::vector<int> list;
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+
+    for(auto iter = list.begin(); iter != list.end();)
+    {
+        if(3 == *iter)
+        {
+            // list.erase(iter++);  崩溃  !!! 顺序容器（vector, queue）erase之后元素会自动前移，iter++会出错导致程序崩溃
+            iter = list.erase(iter);
+        }
+        else
+            ++iter;
+    }
+
+    for(auto i : list)
+        std::cout << i << std::endl;
+
+    /*
+    for(int i=0; i<=3; i++)
+    {
+        for(int j=0; j<=13; j++)
+        {
+            for(int m=0; m<=2; m++)
+            {
+                if(i+j+m == 5 && i*12+j*13+m*14 <= 65)
+                    std::cout << i << "--" << j << "--" << m << std::endl;
+            }
+        }
+    }
+     */
+
+    /*
+    bool bTest = false;
+    for(int i=0; i<5; ++i)
+    {
+        bool b = (rand()%2 ? false : true);
+        bTest += b;
+        std::cout << b << "-----" << bTest << std::endl;
+    }
+     */
+
+
+    /*
     int flag = 0;
     pid_t pId = fork();
     if (pId == -1)
@@ -152,7 +197,7 @@ int main()
 
     sleep(5);
     return EXIT_SUCCESS;
-
+*/
 
     /*
     int iTag = 0;
