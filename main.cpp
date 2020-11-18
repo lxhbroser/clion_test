@@ -7,8 +7,14 @@
 #include <variant>
 #include <vector>
 #include <map>
+#include "math.h"
+#include <netinet/in.h>
+#include <unordered_map>
 #include "algorithm"
 #include "unistd.h"
+#include "memory"
+#include "list"
+#include "common_utf8handle.h"
 
 template<class... Ts> struct overloaded_function : Ts... { using Ts::operator()...; };
 template<class... Ts> overloaded_function(Ts...) -> overloaded_function<Ts...>;
@@ -104,8 +110,283 @@ static std::string int2bin(T iNumber)
     return strRet.substr(iPosition);
 }
 
+class BmwCar
+{
+public:
+    void print() { std::cout << "jadksjflkja" << std::endl; }
+};
+
+static BmwCar* CreateCar(std::string strCardName)
+{
+    if ("Bmw" == strCardName) {
+        return new BmwCar();
+    }
+
+    return nullptr;
+}
+
+enum EType
+{
+    ET_Invalid = 0,
+    ET_One = 1,
+    // ET_Two = 2,
+    // ET_Three = 3,
+    ET_Four = 4,
+    ET_Five = 5,
+
+    ET_Max,
+};
+
+class CFather
+{
+public:
+    CFather() {}
+
+    int a;
+};
+
+class CChild : public CFather
+{
+public:
+    CChild() {}
+
+    int b;
+};
+
+void FuncFather(const CFather& ff)
+{
+     const CChild& cc = static_cast<const CChild&>(ff);
+     // cc.b = 2;
+}
+
+struct CS
+{
+    int a = 0;
+    int b = 0;
+    std::vector<int> c;
+};
+
+void FuncArray(int a[])
+{
+    a[1] = 1;
+}
+
 int main()
 {
+    int a[6] = {0};
+    FuncArray(a);
+    for(int i = 0; i < 5; ++i)
+        std::cout << a[i] << std::endl;
+
+    std::vector<CS> tt;
+    std::cout << "-----" << tt.size() << std::endl;
+
+
+    /*
+    std::string strCont = "阿斯f啊,，";
+    std::vector<uint32_t> stTalkContent;
+    CUTF8Handle::Decode(strCont, stTalkContent);
+    std::cout << stTalkContent.size() << std::endl;
+
+    double dd = 0;
+    std::cout << std::ceil(dd) << std::endl;
+
+    std::multimap<int, int> stMap;
+    std::cout << stMap.size() << std::endl;
+    stMap.emplace(1, 1);
+    std::cout << stMap.size() << std::endl;
+    stMap.emplace(1, 2);
+    std::cout << stMap.size() << std::endl;
+    stMap.emplace(1, 2);
+    std::cout << stMap.size() << std::endl;
+
+    for(auto& iter : stMap)
+    {
+        std::cout << iter.first << "---" << iter.second << std::endl;
+    }
+*/
+
+
+    /*
+    std::string str = "";
+    std::vector<int> aa = {2, 1, 5};
+    for(auto a : aa)
+    {
+        str += 'A' + a - 1;
+    }
+
+    std::cout << 'A' + 0 << std::endl;
+    std::cout << str << std::endl;
+
+    std::string strCh = "啊发。";
+    std::cout << strCh.size() << std::endl;
+     */
+
+
+    /*
+    enum TEnum
+    {
+        EE_Invalid = 0,
+        EE_One = 1,
+        EE_Two = 5,
+        EE_Max,
+        EE_Cur = EE_Max - 1,
+    };
+
+    std::cout << EE_Max << "---" << EE_Cur << std::endl;
+
+    for(int i=0; i<10; ++i)
+    {
+        std::vector<int> st;
+        st.push_back(1);
+        std::cout << st.size() << std::endl;
+    }
+     */
+
+    /*
+    CS cc;
+    cc.a = 213;
+    std::map<int, CS> m_stMap;
+    m_stMap[1] = std::move(cc);
+    auto p = &cc;
+
+    printf("%d %d---\n", m_stMap[1].a, p->a);
+
+    CFather ff;
+    int c, d;
+
+    printf("%d %d\n", ff.a, d);
+
+    std::string str = "Hello";
+    std::vector<std::string> v;
+    //调用常规的拷贝构造函数，新建字符数组，拷贝数据
+    v.push_back(str);
+    std::cout << "After copy, str is \"" << str << "\"\n";
+    //调用移动构造函数，掏空str，掏空后，最好不要使用str
+    v.push_back(std::move(str));
+    std::cout << "After move, str is \"" << str << "\"\n";
+    std::cout << "The contents of the vector are \"" << v[0]
+              << "\", \"" << v[1] << "\"\n";
+              */
+
+
+    /*
+    int a = 10;
+    int b = 0;
+
+    a = a++;
+    // b = a++ + a++;
+
+    printf("%d %d\n", a, b);
+     */
+
+
+    /*
+    std::unordered_map<int, int> mm;
+    auto iter = mm.begin();
+    iter->first;
+
+    auto pCar = CreateCar("Bmw");
+    pCar->print();
+
+    std::map<int32_t, int32_t> stMap;
+    stMap[1];
+    ++stMap[2];
+    ++stMap[2];
+    for(auto i : stMap)
+    {
+        // printf("%d--%d\n", i.first, i.second);
+    }
+
+    std::cout << ET_Max << std::endl;
+*/
+
+    /*
+    std::string str = "1_1";
+    int i = ::atoi(str.c_str());
+    std::cout << i << std::endl;
+
+    std::cout << std::numeric_limits<int32_t>::min() << std::endl;
+*/
+
+    /*
+    std::map<int32_t, std::map<int, int>> stMap;
+    std::cout << stMap.size() << std::endl;
+    if(stMap[1][2] >= 0)
+        std::cout << "ffffffff" << std::endl;
+    else
+        std::cout << "dddddddd" << std::endl;
+
+    std::cout << stMap.size() << std::endl;
+    std::cout << stMap[1].size() << std::endl;
+    std::cout << stMap[1][2] << std::endl;
+*/
+
+    /*
+    std::list<int> stList;
+    stList.push_back(1);
+    stList.push_back(2);
+    stList.push_back(3);
+
+    auto iterBegin = stList.begin();
+    auto iterEnd = stList.end();
+    int i = 1;
+    for(; iterBegin != iterEnd; ++iterBegin)
+    {
+        if(*iterBegin == 2)
+        {
+            stList.insert(iterBegin, 9);
+
+            std::cout << *iterBegin << std::endl;
+        }
+
+        if(*iterBegin == 9)
+        {
+            std::cout << *iterBegin << std::endl;
+        }
+
+        if(*iterBegin == 3)
+        {
+            stList.insert(iterBegin, 9);
+
+            std::cout << *iterBegin << std::endl;
+        }
+
+        std::cout << "=>" << i++ << std::endl;
+    }
+
+    std::cout << "-----------" << std::endl;
+
+    for(auto iter : stList)
+        std::cout << iter << std::endl;
+*/
+
+
+    /*
+    std::vector<int> stVec;
+    stVec.push_back(0);
+    stVec.push_back(1);
+    stVec[1] = 2;
+    for(int i = 0; i < stVec.size(); ++i)
+        std::cout << i << "---" << stVec[i] << std::endl;
+
+    stVec.resize(5);
+    for(int i = 0; i < stVec.size(); ++i)
+        std::cout << i << "---" << stVec[i] << std::endl;
+
+    stVec[3] = 2;
+    stVec.resize(8);
+    for(int i = 0; i < stVec.size(); ++i)
+        std::cout << i << "---" << stVec[i] << std::endl;
+*/
+
+    /*
+    std::shared_ptr<TMysqlColumn> ff(nullptr);
+
+    std::cout<< (ff.get() == nullptr) << std::endl;
+*/
+
+    /*
     std::vector<int> list;
     list.push_back(1);
     list.push_back(2);
@@ -124,6 +405,7 @@ int main()
 
     for(auto i : list)
         std::cout << i << std::endl;
+*/
 
     /*
     for(int i=0; i<=3; i++)
