@@ -15,6 +15,11 @@
 #include "memory"
 #include "list"
 #include "common_utf8handle.h"
+#include "sys/socket.h"
+#include "netdb.h"
+#include "stdio.h"
+#include <arpa/inet.h>
+#include "string.h"
 
 template<class... Ts> struct overloaded_function : Ts... { using Ts::operator()...; };
 template<class... Ts> overloaded_function(Ts...) -> overloaded_function<Ts...>;
@@ -171,8 +176,80 @@ void FuncArray(int a[])
     a[1] = 1;
 }
 
+std::string StrRetCode(char* data)
+{
+    std::string ret;
+    std::string str = "jaksjf";
+    memcpy(data, str.c_str(), str.length());
+
+    ret = data;
+    return ret;
+}
+
 int main()
 {
+    int a = 29;
+    int b = 10;
+    int c = a / b;
+    std::cout << c << std::endl;
+
+    /*
+    char aa[10];
+    std::vector<int32_t> st;
+    // auto data = StrRetCode(aa);
+    // std::cout << data << std::endl;
+
+    std::cout << sizeof(st) << std::endl;
+    sprintf(aa, "ffffff");
+    std::cout << aa << std::endl;
+*/
+
+
+    /*
+    char    ** pptr;
+    struct  hostent  * hptr;
+    char    str[ 32 ];
+
+    std::string strHostAddr = "smtp.163.com";
+    if ((hptr = gethostbyname(strHostAddr.c_str())) == NULL)
+    {
+        printf("gethostbyname error for host:%s\n", strHostAddr.c_str());
+        return 0;
+    }
+
+    printf("official hostname:%s\n" ,hptr->h_name);
+    for (pptr = hptr->h_aliases; *pptr != NULL; pptr++)
+        printf("alias:%s\n" , *pptr);
+
+    switch (hptr->h_addrtype)
+    {
+        case AF_INET:
+        case AF_INET6:
+            pptr = hptr->h_addr_list;
+            for (; *pptr != NULL; pptr++)
+                printf("address:%s\n", inet_ntop(hptr->h_addrtype, *pptr, str, sizeof(str)));
+
+            printf("first address: %s\n", inet_ntop(hptr->h_addrtype, hptr->h_addr, str, sizeof(str)));
+            break;
+        default :
+            printf("unknown address type\n");
+            break;
+    }
+     */
+
+
+
+    /*
+    std::map<int, int> mMap;
+    std::cout << sizeof(mMap) << std::endl;
+    int32_t iNum = 0;
+    std::cin >> iNum;
+    for(int i = 0; i < iNum; ++i)
+        mMap[i] = i;
+    std::cout << sizeof(mMap) << std::endl;
+*/
+
+    /*
     int a[6] = {0};
     FuncArray(a);
     for(int i = 0; i < 5; ++i)
@@ -180,7 +257,7 @@ int main()
 
     std::vector<CS> tt;
     std::cout << "-----" << tt.size() << std::endl;
-
+*/
 
     /*
     std::string strCont = "阿斯f啊,，";
